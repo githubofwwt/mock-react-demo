@@ -76,6 +76,7 @@ checkBrowsers(paths.appPath, isInteractive)
       return;
     }
     const config = configFactory('development');
+    // 通过判断 node 命令行参数动态添加入口文件
     const processArgvs = process.argv.slice(2)
     if (processArgvs.includes('mock')) {
       let entry = config.entry

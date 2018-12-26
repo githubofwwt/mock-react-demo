@@ -38,9 +38,9 @@ Mock.mock = function (url, method, resFunc) {
       res = err
     }
     console.groupCollapsed(`%c${options.type.toLowerCase()} | ${options.url}`, 'color: green;')
-    console.log(`%cparams: `, 'color: #38f')
+    console.log('%cparams: ', 'color: #38f')
     console.log(options.params)
-    console.log(`%cresponseData: `, 'color: #38f')
+    console.log('%cresponseData: ', 'color: #38f')
     console.log(res)
     console.groupEnd()
     console.log('---------------')

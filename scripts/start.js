@@ -76,6 +76,23 @@ checkBrowsers(paths.appPath, isInteractive)
       return;
     }
     const config = configFactory('development');
+    const processArgvs = process.argv.slice(2)
+    if (processArgvs.includes('mock')) {
+      let entry = config.entry
+      if (Array.isArray(entry)) {
+        entry.push('./src/mock')
+      } else if (typeof entry === 'object') {
+        Object.keys(entry).forEach(name => {
+          if (Array.isArray(entry[name])) {
+            entry[name].psuh('./src/mock')
+          } else {
+            entry[name] = [entry[name], './src/mock']
+          }
+        })
+      } else {
+        config.entry = [entry, './src/mock']
+      }
+    }
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
     const urls = prepareUrls(protocol, HOST, port);
